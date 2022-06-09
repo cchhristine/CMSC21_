@@ -1,24 +1,38 @@
+/* Deals a random hand of cards */
+
+#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-#define N 10
+#define NUM_SUITS 4
+#define NUM_RANKS 13
 
-int main (void){
-    int a[N], i;
+int main(void){
+    bool in_hand[NUM_SUITS][NUM_RANKS] = {{false}};
+    int num_cards, rank, suit;
+    const char rank_code[] = {'2', '3', '4', '6', '7', '8', '9', 
+                                'T', 'J','Q', 'K', 'A'};
+    const char suit_code[] = {'c', 'd', 'h', 's'};
 
-    printf(" Enter %d numbers: \n", N);
-    
-    for (i = 0; i < N; i++){
-        printf("a[%d] = ", i);
-        scanf("%d", &a[i]);
+    srand((unsigned) time(NULL));
+
+    printf("Enter number of cards in hand: ");
+    scanf("%d", &num_cards);
+
+    printf("Your hand:");
+    while(num_cards > 0) {
+        suit = rand() %NUM_SUITS; /*picks a random suit*/
+        rank = rand() %NUM_RANKS; /* picks a random rank */
+
+        if (!in_hand[suit] [rank]) {
+            in_hand[suit][rank] = true;
+            num_cards--;
+            printf(" %c%c",rank_code[rank], suit_code[suit]);
+        }
     }
-
-    printf("In reverse order: ");
-
-    for (i = N - 1; i >= 0; i--){
-        printf("  %d", a[i]);
-    }
-
     printf("\n");
 
     return 0;
+
 }

@@ -1,29 +1,30 @@
 #include <stdio.h>
 
+#define N_REVIEWERS 3
+#define N_MOVIES 4
+
 int main(){
-    float grades [5];
-    grades [0] = 57;
-    printf("Student 1: %.1f\n", grades[0]);
 
-    grades [1] = 85;
-    printf("Student 2: %.1f\n", grades[1]);
+    double sum_per_reviewer, ave_per_reviewer;
 
-    grades [2] = 97;
-    printf("Student 3: %.1f\n", grades[2]);
+    double ratings[N_REVIEWERS][N_MOVIES] = {
+        {4, 6, 2, 5},
+        {7, 9, 4, 9},
+        {6, 9, 3, 7}
+    };
 
-    grades [3] = 16;
-    printf("Student 4: %.1f\n", grades[3]);
+    for (int reviewer = 0; reviewer < N_REVIEWERS; reviewer++){
+        printf("Reviewer%d : ", reviewer+1);
+        sum_per_reviewer = 0;
 
-    grades [4] = 82;
-    printf("Student 5: %.1f\n", grades[4]);
+        for (int movie = 0; movie < N_MOVIES ; movie++){
+            printf("%.0f ", ratings[reviewer][movie]);
+            sum_per_reviewer += ratings[reviewer][movie];
+        }
 
-    printf ("\nArray elements work like typical variables. \n");
-    printf ("\nIt means that we can perform operations with them. Ex: \n");
-    printf ("\nWe want to insrease grade of Student 1 by 2 points.. \n");
-
-    grades[0] = grades[0] + 2;
-    printf("\nUpdated grade of Student 1: %.1f\n", grades[0]);
-
-    return 0;
-
+        ave_per_reviewer = sum_per_reviewer / N_MOVIES;
+        printf("--- Average %.1f", ave_per_reviewer);
+        printf("\n");
     }
+    return 0;
+}
