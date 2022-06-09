@@ -1,20 +1,25 @@
 #include <stdio.h>
 
-int main(void) {
+int main(void){
+    int N, i;
 
-    int sqr = 1;
+    printf("Enter N; ", N);
+    scanf("%d", &N);
+    
+    int a[N];
 
-printf("\n");
-printf( "TABLE OF POWERS OF TWO \n");
-printf(" n     2 to the n\n");
-printf("---    --------\n");
-
-
-    for (int i = 0; i <= 10; i++) {  
-        
-        printf(" %d        %d\n", i, sqr);
-        sqr = sqr * 2;
+    for (i = 0; i < N; i++){
+        printf("a[%d] = ", i);
+        scanf("%d", &a[i]);
     }
 
+    printf("Negative numbers: \n");
+
+    for (i = 0; i < N; i++){
+        if (a[i] < 0){
+            printf ("a[%d] = %d is a negative number. \n", i, a[i]);
+        }
+    }
+    
     return 0;
 }
